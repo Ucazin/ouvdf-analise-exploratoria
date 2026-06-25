@@ -5,6 +5,9 @@ Projeto final da disciplina **Introdução à Ciência de Dados** (CEUB) — Pro
 Análise exploratória de **2,15 milhões de manifestações** registradas no Sistema de Ouvidoria do
 Governo do DF entre **julho/2016 e fevereiro/2025**.
 
+> 🌐 **Apresentação online (GitHub Pages):** https://ucazin.github.io/ouvdf-analise-exploratoria/
+> 🖥️ **Slides (PDF):** [`apresentacao/slides.pdf`](apresentacao/slides.pdf) · 📓 **Notebook:** [`notebook/analise.ipynb`](notebook/analise.ipynb)
+
 ## 👥 Integrantes (trio)
 
 - Lucca Mariz

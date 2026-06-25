@@ -4,8 +4,10 @@
 
 ## Status atual
 
-**Fase: ENTREGA construída localmente, DENTRO DA REGRA do enunciado.** Tema final: **Ouvidoria do DF (OUV-DF)** — dataset do **Portal de Dados Abertos do DF** (dados.df.gov.br), ✅ atende à regra eliminatória de fonte. O `notebook/analise.ipynb` (4 etapas, **8 gráficos**, 4 conclusões) **roda do início ao fim sem erros** (verificado 2x via nbconvert, 0 erros); `apresentacao/slides.pdf` (14 slides) e `README.md` prontos; dados em `data/`; figuras em `apresentacao/figuras/` (8 PNGs).
-**Pendente:** commit/push para o GitHub (repo atual tem nome "motogp" — decidir renomear ou criar novo). Ensaiar apresentação.
+**Fase: ENTREGA PUBLICADA no GitHub + site no ar, DENTRO DA REGRA.** Tema: **Ouvidoria do DF (OUV-DF)** — dataset do **Portal de Dados Abertos do DF**, ✅ atende à regra eliminatória de fonte. `notebook/analise.ipynb` (4 etapas, **8 gráficos**, 4 conclusões) roda sem erros; `apresentacao/slides.pdf` **redesenhado** (14 slides, identidade editorial); `README.md` + dados em `data/`.
+**✅ GitHub:** https://github.com/Ucazin/ouvdf-analise-exploratoria (repo renomeado de "motogp"; histórico limpo, contributor = só Ucazin).
+**🌐 GitHub Pages (site de data storytelling):** https://ucazin.github.io/ouvdf-analise-exploratoria/ (no ar, build ok).
+**Pendente:** ensaiar apresentação. (Opcional: unificar a paleta dos gráficos do notebook com a do site/slides — hoje o notebook usa paleta levemente diferente.)
 
 ## Contexto do trabalho (enunciado oficial)
 
@@ -68,13 +70,14 @@ Escolha/descrição do dado · limpeza justificada · qualidade da pergunta · o
 
 ## Roadmap / próximos passos
 
-1. **Commit + push para o GitHub.** Decidir: renomear o repo `motogp-analise-exploratoria` → algo tipo `ouvdf-analise-exploratoria`, ou criar repo novo. Manter contributor = só Ucazin (sem co-autoria Claude — ver memória `no-claude-coauthor-commits`).
+1. **Ensaiar a apresentação** (10 min, os 3 falam) — dividir: descrição+limpeza / gráficos / conclusões. O site Pages e os slides servem de apoio visual.
 2. **Deletar o repo `motogp-analise-exploratoria-old`** no GitHub (sobra antiga; Claude não tem scope `delete_repo`).
-3. **Ensaiar a apresentação** (10 min, os 3 falam) — dividir: descrição+limpeza / gráficos / conclusões.
+3. **(Opcional) unificar a paleta** dos gráficos do notebook (`apresentacao/figuras/fig*.png`) com a do site/slides (azul/laranja) — hoje o notebook usa paleta crest/mista; site e slides usam `docs/img/g_*.png` (azul/laranja).
 4. **(Opcional) validar o dataset com o professor** por e-mail (regra de reserva: 1 dataset por trio).
 
 ## Decisões técnicas
 
+- **2026-06-24 — Site GitHub Pages + slides redesenhados (design-start/frontend-design).** A pedido do usuário, criada uma camada de apresentação visual: site editorial institucional em `docs/` (HTML/CSS + **Chart.js** para 4 gráficos interativos + 4 imagens), servido via **Pages de `/docs`**; slides.pdf refeitos em **HTML→PDF via Chrome headless** (`--print-to-pdf`), mesma identidade. **Stack:** sem build, Fraunces+IBM Plex Sans, paleta azul/laranja. `design-brief.md` registra a direção. **QA:** screenshots via Chrome headless (desktop+mobile) — responsivo, sem overflow. Gráficos do site/slides re-renderizados em `docs/img/g_*.png` (paleta unificada).
 - **2026-06-24 — PIVÔ para OUV-DF (dentro da regra do portal do DF).** Abandonado o MotoGP (fonte Kaggle, fora da regra eliminatória). O trio decidiu usar **qualquer dataset bom do portal do DF**; Claude curou candidatos e o trio escolheu **Ouvidoria OUV-DF**. **Resolve a não-conformidade** que existia com o MotoGP.
 - **2026-06-24 — Acesso ao portal:** o portal tem **WAF anti-bot (challenge JS)** — `curl`/script não baixam (retornam a home). Download feito **manualmente pelo usuário** no navegador (passa pelo WAF); Claude processou de `~/Downloads`.
 - **2026-06-24 — Dados:** `OUV-DF - Manifestação.csv` e `Resposta.csv` na verdade eram **ZIPs** (TB_MANIFESTACAO 279 MB / TB_RESPOSTA 238 MB descompactados). Análise usa só **TB_MANIFESTACAO** + dimensões. Localização (114 MB) e Resposta **não** versionados (estouram limite GitHub e não usados).
@@ -99,6 +102,12 @@ Escolha/descrição do dado · limpeza justificada · qualidade da pergunta · o
 - Dados brutos completos em `~/Downloads/` (zip do pacote + CSVs soltos) e `~/Downloads/ouvdf_x/` (TB_MANIFESTACAO extraído).
 
 ## Histórico de sessões
+
+### 2026-06-24 (sessão 3 — apresentação visual: site + slides)
+- Publicado no GitHub (repo renomeado `motogp...` → `ouvdf-analise-exploratoria`, histórico limpo via branch órfão + force-push, contributor só Ucazin).
+- Criado **site GitHub Pages** (`docs/index.html`) editorial institucional, responsivo, 4 gráficos interativos (Chart.js) + 4 imagens, no ar em https://ucazin.github.io/ouvdf-analise-exploratoria/.
+- **Slides.pdf redesenhados** via HTML→PDF (Chrome headless), mesma identidade. `data.json`/`data.js` com agregações; `docs/img/g_*.png` na paleta do site; `design-brief.md`.
+- QA visual via Chrome headless (desktop + mobile). Habilitado Pages via `gh api`.
 
 ### 2026-06-24 (sessão 2 — pivô para OUV-DF)
 - **Pivô de tema:** abandonado MotoGP (fora da regra) → **Ouvidoria OUV-DF** (portal do DF, dentro da regra). Usuário baixou o pacote completo manualmente (WAF bloqueia script).
